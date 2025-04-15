@@ -21,7 +21,7 @@ cp .env.example .env
 | `DOCKGE_USERNAME` | Admin username (if auth enabled) | No |
 | `DOCKGE_PASSWORD` | Admin password (if auth enabled) | No |
 | `SERVICE_FOLDER_DATA` | Directory containing stack data | Yes |
-| `SERVICE_FOLDER_STACKS` | Directory containing stack definitions |
+| `SERVICE_FOLDER_STACKS` | Directory containing stack definitions | Yes |
 | `SERVICE_PORT` | Port for the web interface | Yes |
 | `TZ` | Timezone | Yes |
 
