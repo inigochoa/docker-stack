@@ -1,0 +1,20 @@
+services:
+  dockge:
+    container_name: dockge
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 256M
+    env_file:
+      - .env
+    image: louislam/dockge:latest
+    ports:
+      - "${SERVICE_PORT}:5001"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_DATA}:/app/data
+      - ${SERVICE_FOLDER_STACKS}:/opt/stacks
+      - /var/run/docker.sock:/var/run/docker.sock
