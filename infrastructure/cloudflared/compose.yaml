@@ -3,7 +3,7 @@ services:
     command: tunnel --loglevel info --no-autoupdate run
     container_name: cloudflared
     deploy:
-      resouces:
+      resources:
         limits:
           cpus: '0.5'
           memory: 512M
