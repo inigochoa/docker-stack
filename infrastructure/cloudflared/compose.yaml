@@ -12,8 +12,14 @@ services:
     image: cloudflare/cloudflared:latest
     labels:
       - diun.enable=true
+    networks:
+      - cloudflared
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
     volumes:
       - ${SERVICE_FOLDER_DATA}:/etc/cloudflared
+
+networks:
+  cloudflared:
+    external: true
