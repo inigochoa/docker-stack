@@ -1,0 +1,19 @@
+services:
+  cloudflared:
+    command: tunnel --loglevel info --no-autoupdate run
+    container_name: cloudflared
+    deploy:
+      resouces:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    env_file:
+      - .env
+    image: cloudflare/cloudflared:latest
+    labels:
+      - diun.enable=true
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_DATA}:/etc/cloudflared
