@@ -1,0 +1,20 @@
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 64M
+    env_file:
+      - .env
+    image: vaultwarden/server:latest-alpine
+    labels:
+      - diun.enable=true
+    ports:
+      - ${SERVICE_PORT}:80
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_DATA}:/data
