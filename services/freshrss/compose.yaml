@@ -1,0 +1,27 @@
+services:
+  freshrss:
+    container_name: freshrss
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 128M
+    env_file:
+      - .env
+    image: freshrss/freshrss:latest
+    labels:
+      - diun.enable=true
+    networks:
+      - cloudflared
+    ports:
+      - ${SERVICE_PORT}:80
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_DATA}:/var/www/FreshRSS/data
+      - ${SERVICE_FOLDER_EXTENSIONS}:/var/www/FreshRSS/extensions
+
+networks:
+  cloudflared:
+    external: true
