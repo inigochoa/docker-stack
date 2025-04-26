@@ -1,0 +1,26 @@
+services:
+  yamtrack:
+    container_name: yamtrack
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 32M
+    env_file:
+      - .env
+    image: ghcr.io/fuzzygrim/yamtrack
+    labels:
+      - diun.enable=true
+    networks:
+      - cloudflared
+    ports:
+      - ${SERVICE_PORT}:8000
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_DATA}:/yamtrack/db
+
+networks:
+  cloudflared:
+    external: true
