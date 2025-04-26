@@ -1,6 +1,15 @@
 services:
+  redis:
+    container_name: yamtrack-redis
+    image: redis:alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+
   yamtrack:
     container_name: yamtrack
+    depends_on:
+      - redis
     deploy:
       resources:
         limits:
@@ -24,3 +33,6 @@ services:
 networks:
   cloudflared:
     external: true
+
+volumes:
+  redis_data:
