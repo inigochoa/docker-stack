@@ -1,0 +1,110 @@
+services:
+  jellyfin:
+    container_name: jellyfin
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 1G
+    env_file:
+      - .env
+    image: jellyfin/jellyfin:latest
+    labels:
+      - diun.enable=true
+    ports:
+      - ${SERVICE_PORT_JELLYFIN}:8096
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /dev/dri:/dev/dri
+      - /dev/shm:/dev/shm
+      - ${SERVICE_FOLDER_CONFIG_JELLYFIN}:/config
+      - ${SERVICE_FOLDER_MEDIA}:/media:ro
+
+  prowlarr:
+    container_name: prowlarr
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 256m
+    env_file:
+      - .env
+    image: linuxserver/prowlarr:latest
+    labels:
+      - diun.enable=true
+    ports:
+      - ${SERVICE_PORT_PROWLARR}:9696
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_CONFIG_PROWLARR}:/config
+
+  qbittorrent:
+    container_name: qbittorrent
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    env_file:
+      - .env
+    image: linuxserver/qbittorrent:latest
+    labels:
+      - diun.enable=true
+    ports:
+      - ${SERVICE_PORT_QBITTORRENT}:8080
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_CONFIG_QBITTORRENT}:/config
+      - ${SERVICE_FOLDER_DOWNLOADS}:/downloads
+
+  radarr:
+    container_name: radarr
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 768M
+    env_file:
+      - .env
+    image: linuxserver/radarr:latest
+    labels:
+      - diun.enable=true
+    ports:
+      - ${SERVICE_PORT_RADARR}:7878
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_CONFIG_RADARR}:/config
+      - ${SERVICE_FOLDER_MOVIES}:/movies
+      - ${SERVICE_FOLDER_DOWNLOADS}:/downloads
+
+  sonarr:
+    container_name: sonarr
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+    env_file:
+      - .env
+    image: linuxserver/sonarr:latest
+    labels:
+      - diun.enable=true
+    ports:
+      - ${SERVICE_PORT_SONARR}:8989
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_CONFIG_SONARR}:/config
+      - ${SERVICE_FOLDER_SERIES}:/tv
+      - ${SERVICE_FOLDER_DOWNLOADS}:/downloads
