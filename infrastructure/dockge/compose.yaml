@@ -5,7 +5,7 @@ services:
       resources:
         limits:
           cpus: '0.2'
-          memory: 256M
+          memory: 512M
     env_file:
       - .env
     image: louislam/dockge:latest

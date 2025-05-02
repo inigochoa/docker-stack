@@ -1,6 +1,11 @@
 services:
   redis:
     container_name: yamtrack-redis
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 64M
     image: redis:alpine
     networks:
       - yamtrack

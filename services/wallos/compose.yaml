@@ -5,7 +5,7 @@ services:
       resources:
         limits:
           cpus: '0.1'
-          memory: 32M
+          memory: 128M
     env_file:
       - .env
     image: bellamy/wallos:latest
