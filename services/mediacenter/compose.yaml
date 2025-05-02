@@ -42,29 +42,6 @@ services:
     volumes:
       - ${SERVICE_FOLDER_CONFIG_PROWLARR}:/config
 
-  qbittorrent:
-    container_name: qbittorrent
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 512M
-    env_file:
-      - .env
-    image: linuxserver/qbittorrent:latest
-    labels:
-      - diun.enable=true
-    ports:
-      - ${SERVICE_PORT_QBITTORRENT}:8080
-      - 6881:6881
-      - 6881:6881/udp
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    volumes:
-      - ${SERVICE_FOLDER_CONFIG_QBITTORRENT}:/config
-      - ${SERVICE_FOLDER_DOWNLOADS}:/downloads
-
   radarr:
     container_name: radarr
     deploy:
@@ -107,4 +84,27 @@ services:
     volumes:
       - ${SERVICE_FOLDER_CONFIG_SONARR}:/config
       - ${SERVICE_FOLDER_SERIES}:/tv
+      - ${SERVICE_FOLDER_DOWNLOADS}:/downloads
+
+  transmission:
+    container_name: transmission
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    env_file:
+      - .env
+    image: linuxserver/transmission:latest
+    labels:
+      - diun.enable=true
+    ports:
+      - ${SERVICE_PORT_TRANSMISSION}:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_CONFIG_TRANBSMISSION}:/config
       - ${SERVICE_FOLDER_DOWNLOADS}:/downloads
