@@ -1,0 +1,33 @@
+services:
+  radicale:
+    cap_add:
+      - CHOWN
+      - KILL
+      - SETGID
+      - SETUID
+    cap_drop:
+      - ALL
+    container_name: radicale
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 256M
+    image: tomsquest/docker-radicale:latest
+    init: true
+    labels:
+      - diun.enable=true
+    networks:
+      - cloudflared
+    ports:
+      - ${SERVICE_PORT}:5232
+    read_only: true
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_DATA}:/data
+
+networks:
+  cloudflared:
+    external: true
