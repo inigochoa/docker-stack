@@ -17,6 +17,7 @@ services:
     security_opt:
       - no-new-privileges:true
     volumes:
+      - ${SERVICE_FOLDER_BACKUP}:/backups
       - ${SERVICE_FOLDER_DATA}:/var/lib/postgresql/data
 
   joplin:
