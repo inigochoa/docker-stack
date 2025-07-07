@@ -1,0 +1,47 @@
+services:
+  db:
+    container_name: joplin_db
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.50'
+    env_file:
+      - .env
+    image: postgres:16
+    labels:
+      - diun.enable=true
+    networks:
+      - cloudflared
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  joplin:
+    container_name: joplin
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.50'
+    env_file:
+      - .env
+    image: joplin/server:latest
+    labels:
+      - diun.enable=true
+    networks:
+      - cloudflared
+    ports:
+      - ${SERVICE_PORT}:22300
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_DATA}:/var/lib/joplin
+
+networks:
+  cloudflared:
+    external: true
