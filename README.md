@@ -58,17 +58,21 @@ directory exists and has appropriate permissions.
 
 ### Infrastructure
 
-- **Cloudflared**: Cloudflare Tunnel for secure remote access
-- **Dockge**: Docker Compose stack management UI
-- **Duplicati**: Backup solution for your data
+- **Cloudflared**: Cloudflare Tunnel for secure remote access.
+- **Diun**: Monitor Docker images.
+- **Dockge**: Docker Compose stack management UI.
+- **Duplicati**: Backup solution for your data.
 
 ### Applications
 
-- **Nextcloud**: File storage, calendar, contacts, etc.
-- **Paperless**: Document management system
-- **Vaultwarden**: Password manager (Bitwarden compatible)
-- **Wallabag**: Save and classify articles from the web
-- **Wallos**: Subscription tracker
+- **Baïkal**: CalDAV+CardDAV server.
+- **FreshRSS**: RSS feed aggregator.
+- **Joplin**: An open source note-taking app.
+- **Syncthing**: Continuous file synchronization program.
+- **Vaultwarden**: Password manager (Bitwarden compatible).
+- **Wallabag**: Save and classify articles from the web.
+- **Wallos**: Subscription tracker.
+- **Yamtrack**: Media tracker.
 
 ## Maintenance
 
