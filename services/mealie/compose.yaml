@@ -1,0 +1,26 @@
+services:
+  mealie:
+    container_name: mealie
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 512G
+    env_file:
+      - .env
+    image: ghcr.io/mealie-recipes/mealie:latest
+    labels:
+      - diun.enable=true
+    networks:
+      - cloudflared
+    ports:
+      - ${SERVICE_PORT}:9000
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_DATA}:/app/data/
+
+networks:
+  cloudflared:
+    external: true

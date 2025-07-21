@@ -8,11 +8,9 @@ services:
           cpus: '0.50'
     env_file:
       - .env
-    image: postgres:16
+    image: postgres:16-alpine
     labels:
       - diun.enable=true
-    networks:
-      - cloudflared
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
