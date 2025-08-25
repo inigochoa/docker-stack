@@ -1,0 +1,27 @@
+services:
+  tasksmd:
+    container_name: tasksmd
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 512M
+    env_file:
+      - .env
+    image: baldissaramatheus/tasks.md
+    labels:
+      - diun.enable=true
+    networks:
+      - cloudflared
+    ports:
+      - ${SERVICE_PORT}:8080
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERVICE_FOLDER_CONFIG}:/config
+      - ${SERVICE_FOLDER_DATA}:/tasks
+
+networks:
+  cloudflared:
+    external: true
