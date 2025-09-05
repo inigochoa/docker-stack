@@ -58,14 +58,12 @@ directory exists and has appropriate permissions.
 
 ### Infrastructure
 
-- **Cloudflared**: Cloudflare Tunnel for secure remote access.
 - **Diun**: Monitor Docker images.
 - **Dockge**: Docker Compose stack management UI.
 - **Duplicati**: Backup solution for your data.
 
 ### Applications
 
-- **Baïkal**: CalDAV+CardDAV server.
 - **FreshRSS**: RSS feed aggregator.
 - **Joplin**: An open source note-taking app.
 - **Syncthing**: Continuous file synchronization program.
