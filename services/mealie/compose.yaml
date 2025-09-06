@@ -11,8 +11,6 @@ services:
     image: ghcr.io/mealie-recipes/mealie:latest
     labels:
       - diun.enable=true
-    networks:
-      - cloudflared
     ports:
       - ${SERVICE_PORT}:9000
     restart: unless-stopped
@@ -20,7 +18,3 @@ services:
       - no-new-privileges:true
     volumes:
       - ${SERVICE_FOLDER_DATA}:/app/data/
-
-networks:
-  cloudflared:
-    external: true

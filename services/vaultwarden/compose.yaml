@@ -11,8 +11,6 @@ services:
     image: vaultwarden/server:latest-alpine
     labels:
       - diun.enable=true
-    networks:
-      - cloudflared
     ports:
       - ${SERVICE_PORT}:80
     restart: unless-stopped
@@ -20,7 +18,3 @@ services:
       - no-new-privileges:true
     volumes:
       - ${SERVICE_FOLDER_DATA}:/data
-
-networks:
-  cloudflared:
-    external: true

@@ -11,8 +11,6 @@ services:
     image: linuxserver/syncthing:latest
     labels:
       - diun.enable=true
-    networks:
-      - cloudflared
     ports:
       - ${SERVICE_PORT}:8384
       - 22000:22000/tcp
@@ -24,7 +22,3 @@ services:
     volumes:
       - ${SERVICE_FOLDER_CONFIG}:/config
       - ${SERVICE_FOLDER_DATA}:/data
-
-networks:
-  cloudflared:
-    external: true

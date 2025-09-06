@@ -28,7 +28,6 @@ services:
     labels:
       - diun.enable=true
     networks:
-      - cloudflared
       - yamtrack
     ports:
       - ${SERVICE_PORT}:8000
@@ -39,8 +38,6 @@ services:
       - ${SERVICE_FOLDER_DATA}:/yamtrack/db
 
 networks:
-  cloudflared:
-    external: true
   yamtrack:
     driver: bridge
 
