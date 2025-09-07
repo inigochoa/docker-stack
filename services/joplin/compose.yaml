@@ -34,5 +34,6 @@ services:
       - diun.enable=true
     ports:
       - ${SERVICE_PORT}:22300
+    restart: unless-stopped
     security_opt:
       - no-new-privileges:true
