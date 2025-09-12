@@ -4,8 +4,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.50'
-          memory: 512M
+          cpus: '0.1'
+          memory: 128M
     env_file:
       - .env
     healthcheck:
@@ -32,7 +32,7 @@ services:
       resources:
         limits:
           cpus: '0.1'
-          memory: 128M
+          memory: 256M
     env_file:
       - .env
     image: ghcr.io/sassanix/warracker/main:latest
